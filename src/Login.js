@@ -32,73 +32,91 @@ class Login extends Component {
     if (this.state.signup) {
       return(
         <View>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'flex-start', marginTop: 10 }}>
+        <Icon
+                      name='envelope-o'
+                      color='rgba(0, 0, 0, 0.38)'
+                      size={25}
+                      style={{backgroundColor: 'transparent', marginTop: 6, marginLeft: 10}}
+                    />
+
         <FormInput
-        icon={
-  <Icon
-    name='envelope-o'
-    color='rgba(0, 0, 0, 0.38)'
-    size={25}
-    style={{backgroundColor: 'transparent'}}
-  />
-}
                autoCorrect={false}
-               containerStyle={{ width: 250, borderColor: '#000' }}
+               containerStyle={{ width: 200, borderColor: '#000' }}
                inputStyle={{ borderColor: '#000', color: '#000' }}
                placeholder={'Email'}
                  value={this.state.email}
                  onChangeText={email => this.setState({ email })}
                />
+        </View>
+  <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'flex-start' }}>
+               <SimpleIcon
+                        name='lock'
+                        color='rgba(0, 0, 0, 0.38)'
+                        size={25}
+                        style={{backgroundColor: 'transparent', marginTop: 6, marginLeft: 10}}
+                      />
+
         <FormInput
                autoCorrect={false}
-               containerStyle={{ width: 250, borderColor: '#000' }}
+               containerStyle={{ width: 200, borderColor: '#000' }}
                inputStyle={{ borderColor: '#000', color: '#000' }}
                placeholder={'Password'}
                secureTextEntry
                  value={this.state.password}
                  onChangeText={password => this.setState({ password })}
                />
-               <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+               </View>
+               <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: 6 }}>
                <FormInput
                       autoCorrect={false}
-                      containerStyle={{ width: 140, borderColor: '#000' }}
+                      containerStyle={{ width: 80, borderColor: '#000', marginLeft: 55 }}
                       inputStyle={{ borderColor: '#000', color: '#000' }}
                       placeholder={'SMS Code'}
                       secureTextEntry
                         value={this.state.code}
                         onChangeText={code => this.setState({ code })}
                       />
-              <Button title="Send Email" buttonStyle={{ width: 80, height: 30, borderRadius: 10, marginTop: 2 }} textStyle={{ fontSize: 10 }}/>
+              <Button title="Send Email" buttonStyle={{ width: 80, height: 30, borderRadius: 10, marginTop: 5, marginLeft: 10 }} textStyle={{ fontSize: 10 }}/>
               </View>
         </View>
       );
     }
     return (
       <View>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'flex-start', marginTop: 10 }}>
+      <Icon
+                    name='envelope-o'
+                    color='rgba(0, 0, 0, 0.38)'
+                    size={25}
+                    style={{backgroundColor: 'transparent', marginTop: 6, marginLeft: 10}}
+                  />
       <FormInput
-      icon={
-<Icon
-  name='envelope-o'
-  color='rgba(0, 0, 0, 0.38)'
-  size={25}
-  style={{backgroundColor: 'transparent'}}
-/>
-}
              autoCorrect={false}
-             containerStyle={{ width: 250, borderColor: '#000' }}
+             containerStyle={{ width: 200, borderColor: '#000' }}
              inputStyle={{ borderColor: '#000', color: '#000' }}
              placeholder={'Email'}
                value={this.state.email}
                onChangeText={email => this.setState({ email })}
              />
+             </View>
+             <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'flex-start' }}>
+                          <SimpleIcon
+                                   name='lock'
+                                   color='rgba(0, 0, 0, 0.38)'
+                                   size={25}
+                                   style={{backgroundColor: 'transparent', marginTop: 6, marginLeft: 10}}
+                                 />
       <FormInput
              autoCorrect={false}
-             containerStyle={{ width: 250, borderColor: '#000' }}
+             containerStyle={{ width: 200, borderColor: '#000' }}
              inputStyle={{ borderColor: '#000', color: '#000' }}
              placeholder={'Password'}
              secureTextEntry
                value={this.state.password}
                onChangeText={password => this.setState({ password })}
              />
+            </View>
       </View>
     );
   }
@@ -107,13 +125,13 @@ class Login extends Component {
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Image
         source={require('../assets/armoilogo.png')}
-        style={{ width:SCREEN_WIDTH }}
+        style={{ width:SCREEN_WIDTH, marginTop: -130 }}
         resizeMode='contain'
         />
-        <View style={{ width: SCREEN_WIDTH-60, backgroundColor: 'rgba(0,0,0,0.2)', justifyContent: 'center', alignItems: 'center', borderRadius: 30 }}>
+        <View style={{ width: SCREEN_WIDTH-60, backgroundColor: 'rgba(0,0,0,0.2)', justifyContent: 'center', alignItems: 'center', borderRadius: 30, marginTop: -60 }}>
         {this.renderAuthorization()}
         </View>
-        <Button title={this.state.signup? "Sign Up" : "Log In"} onPress={()=>this.props.navigation.navigate('main')} buttonStyle={{ borderRadius: 15, marginTop: 15, width: 150 }}/>
+        <Button title={this.state.signup? "Sign Up" : "Log In"} onPress={()=>this.props.navigation.navigate('main')} buttonStyle={{ borderRadius: 15, marginTop: 45, width: 150 }}/>
         {this.renderReset()}
         <View style={{ width: SCREEN_WIDTH, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', position: 'absolute', top: SCREEN_HEIGHT-40 }}>
         <TouchableOpacity style={{ backgroundColor: 'rgba(0,0,0,0.5)', borderWidth: 0.5, borderColor: '#000', height: 40, width: SCREEN_WIDTH/2, justifyContent: 'center', alignItems: 'center' }} onPress={()=> this.setState({signup: true})}>
