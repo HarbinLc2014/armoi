@@ -100,7 +100,7 @@ class Login extends Component {
                onChangeText={email => this.setState({ email })}
              />
              </View>
-             <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'flex-start' }}>
+             <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'flex-start', marginBottom: 10 }}>
                           <SimpleIcon
                                    name='lock'
                                    color='rgba(0, 0, 0, 0.38)'
@@ -134,16 +134,37 @@ class Login extends Component {
         <Button title={this.state.signup? "Sign Up" : "Log In"} onPress={()=>this.props.navigation.navigate('main')} buttonStyle={{ borderRadius: 15, marginTop: 45, width: 150 }}/>
         {this.renderReset()}
         <View style={{ width: SCREEN_WIDTH, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', position: 'absolute', top: SCREEN_HEIGHT-40 }}>
-        <TouchableOpacity style={{ backgroundColor: 'rgba(0,0,0,0.5)', borderWidth: 0.5, borderColor: '#000', height: 40, width: SCREEN_WIDTH/2, justifyContent: 'center', alignItems: 'center' }} onPress={()=> this.setState({signup: true})}>
+        <TouchableOpacity style={this.state.signup? Styles.style2 : Styles.style1} onPress={()=> this.setState({signup: true})}>
         <Text style={{ color: 'white' }}>Sign Up</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{ backgroundColor: 'rgba(0,0,0,0.5)', borderWidth: 0.5, borderColor: '#000', height: 40, width: SCREEN_WIDTH/2, justifyContent: 'center', alignItems: 'center' }} onPress={()=> this.setState({signup: false})}>
+        <TouchableOpacity style={this.state.signup? Styles.style1 : Styles.style2} onPress={()=> this.setState({signup: false})}>
         <Text style={{ color: 'white' }}>Log In</Text>
         </TouchableOpacity>
         </View>
         </View>
       );
   }
+}
+
+const Styles= {
+  style1: {
+     backgroundColor: 'rgba(0,0,0,0.5)',
+     borderWidth: 0.5,
+     borderColor: '#000',
+     height: 40,
+     width: SCREEN_WIDTH/2,
+     justifyContent: 'center',
+     alignItems: 'center'
+  },
+ style2: {
+   backgroundColor: 'rgba(0,0,0,0.8)',
+   borderWidth: 0.5,
+   borderColor: '#000',
+   height: 40,
+   width: SCREEN_WIDTH/2,
+   justifyContent: 'center',
+   alignItems: 'center'
+ }
 }
 
 export default Login;
