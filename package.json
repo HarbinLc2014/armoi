@@ -4,8 +4,10 @@
   "dependencies": {
     "expo": "^25.0.0",
     "native-base": "^2.4.1",
+    "parse": "^1.11.1",
     "react": "16.2.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-25.0.0.tar.gz",
+    "react-native-loader": "^1.2.1",
     "react-navigation": "^1.5.8"
   }
 }
