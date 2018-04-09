@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Platform, Image, LayoutAnimation, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, Platform, Image, LayoutAnimation, TouchableOpacity, Dimensions, ScrollView, Keyboard } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Ionicons, Foundation, Entypo } from '@expo/vector-icons';
 import { Header, Item, Icon, Input} from 'native-base';
@@ -22,7 +22,7 @@ class Main extends Component {
        },
        headerTitle:
 <Header
-style={{ width: SCREEN_WIDTH-60, height: 64, marginBottom: 18, backgroundColor:'rgba(0,0,0,0)' }}
+style={{ width: SCREEN_WIDTH-80, height: 64, marginBottom: 18, backgroundColor:'rgba(0,0,0,0)', alignItems: 'center', justifyContent: 'center' }}
 searchBar
 rounded>
         <Item>
@@ -37,17 +37,17 @@ rounded>
             />
             {params? params.Enter? <Entypo name="cross" size={20} color='#000' style={{ marginTop: 2, marginRight: 5 }} onPress={()=> {LayoutAnimation.easeInEaseOut(); navigation.state.params.onClear();}}/> : null : null}
           </Item>
-          {params? <TouchableOpacity onPress={()=> {LayoutAnimation.easeInEaseOut(); navigation.state.params.onBlur();}}><Text style={{ fontSize: 15, color: '#007aff', marginTop: 17, marginRight: 10, marginLeft: 10 }}>{params.focusParam}</Text></TouchableOpacity> : null}
+          {params? <TouchableOpacity onPress={()=> { Keyboard.dismiss(); LayoutAnimation.easeInEaseOut(); navigation.state.params.onBlur();}}><Text style={{ fontSize: 15, color: '#007aff', marginTop: 3, marginRight: -8, marginLeft: 8 }}>{params.focusParam}</Text></TouchableOpacity> : null}
           </Header>,
           headerRight:
-            <TouchableOpacity style={{ marginRight: 10 }} onPress={()=> navigation.state.params.onGo() }><Text style={{ fontSize: 17, color: '#007aff' }}>Go</Text></TouchableOpacity>,
+            <TouchableOpacity style={{ marginRight: 10, marginLeft: -5 }} onPress={()=> navigation.state.params.onGo() }><Text style={{ fontSize: 17, color: '#007aff' }}>Go</Text></TouchableOpacity>,
      headerStyle: {
        marginTop: Platform.OS === 'android' ? 24 : 0,
        height: 45
      },
 
     headerLeft:
-<Image source={require('../assets/armoilogo2.png')} resizeMode='stretch' style={{ width: 30, wi:'ss', height: 30, marginTop: 2, marginBottom: 5, marginLeft: 5 }} />
+<Image source={require('../assets/armoilogo2.png')} resizeMode='stretch' style={{ width: 35, height: 35, marginTop: 2, marginBottom: 5, marginLeft: 5, marginRight: 9 }} />
 
    };
  }
@@ -67,7 +67,7 @@ rounded>
    console.log(this.state.searchContent);
  }
  renderCancel() {
-   return <TouchableOpacity style={{ marginTop: 17, marginRight: 10, marginLeft: 10 }}><Text style={{ fontSize: 15, color: '#007aff' }}>Cancel</Text></TouchableOpacity>
+   return <TouchableOpacity style={{ marginTop: 17, marginRight: 10, marginLeft: 10 }} onPress={()=>Keyboard.dismiss()} ><Text style={{ fontSize: 15, color: '#007aff' }}>Cancel</Text></TouchableOpacity>
  }
  changeText =(text)=> {
    this.props.navigation.setParams({ searchParam: text });
@@ -87,9 +87,27 @@ rounded>
    this.props.navigation.setParams({focusParam: ''});
    this.setState({ onSearch: false });
  }
+ renderSearchHeader() {
+      LayoutAnimation.easeInEaseOut();
+   if(this.state.searchContent!='' && this.state.onSearch) {
+   return <View style={{ top: 0, width: SCREEN_WIDTH-10, height: 300, zIndex: 1, position: 'absolute', backgroundColor: '#fff',elevation: 20, justifyContent: 'center', alignItems: 'center',
+        shadowOffset: {width: 0, height: 0},
+        shadowColor: 'black',
+        shadowOpacity: 1,
+        shadowRadius: 5 }}>
+
+        <Text style={{ fontSize: 25, color: '#d1d1d1', fontWeight: 'bold',  shadowOffset: {width: 0, height: 0},
+          shadowColor: 'black',
+          shadowOpacity: 1,
+          shadowRadius: 2 }}>No Search Result</Text>
+
+        </View>;
+ }
+ }
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <ScrollView contentContainerStyle={{ flex: 1, alignItems: 'center', zIndex: 0, position: 'absolute', width:SCREEN_WIDTH }}>
+      {this.renderSearchHeader()}
       <Text>{this.state.onSearch? 'Searching' : 'not Searching'}</Text>
       <Button
   title="Update the title"
@@ -99,7 +117,7 @@ rounded>
 title="Sign out"
 onPress={() => this.props.navigation.navigate('login')}
 />
-      </View>
+      </ScrollView>
     );
   }
 }

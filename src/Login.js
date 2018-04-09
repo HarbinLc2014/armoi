@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image, Dimensions, TouchableOpacity, LayoutAnimation, TextInput, Alert} from 'react-native';
-import { FormInput, Button } from 'react-native-elements';
+import { FormInput, Button, FormValidationMessage } from 'react-native-elements';
 import {Bubbles, DoubleBounce, Bars, Pulse} from 'react-native-loader';
 var Parse = require('parse/react-native');
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -16,7 +16,7 @@ const SCREEN_WIDTH= Dimensions.get('window').width;
 const SCREEN_HEIGHT= Dimensions.get('window').height;
 
 class Login extends Component {
-  state = { signup: true, email: '', password: '', code: '', loading: false };
+  state = { signup: true, email: '', password: '', code: '', loading: false, message: '' };
   componentWillUpdate() {
     LayoutAnimation.spring();
     LayoutAnimation.easeInEaseOut();
@@ -27,6 +27,7 @@ class Login extends Component {
   return re.test(email);
 }
 authorize() {
+    this.setState({message: ''});
    const a = {props: this.props, state: this.state, setState: this.setState({loading: false}) };
    this.setState({loading: true});
    console.log('asdasdloading!');
@@ -49,21 +50,23 @@ user.signUp(a, {
   success: function(user) {
   },
   error: function(user, error) {
-    Alert.alert(error.message);
+    //Alert.alert(error.message);
   }
 });
  },
  error: function(user, error) {
-   Alert.alert(error.message);
+  // Alert.alert(error.message);
  }
 }
 ).then(()=>{
 
   this.setState({loading: false});
+  this.setState({message: ''});
   this.props.navigation.navigate('main');
-}).catch(()=>{
+}).catch((error)=>{
 
   this.setState({loading: false});
+  this.setState({ message: error.message });
 });
 this.setState({email:'', password: ''});
 
@@ -76,18 +79,20 @@ else{
    console.log('');
  },
  error: function(user, error) {
-   Alert.alert(error.message);
+  // Alert.alert(error.message);
  }
 }).then(()=>{
   this.setState({loading: false});
+  this.setState({ message: '' });
   this.props.navigation.navigate('main');
   Parse.User.currentAsync().then(()=> {
 
   });
 
 }
-).catch(()=>{
+).catch((error)=>{
   this.setState({loading: false});
+    this.setState({ message: error.message });
 });
 this.setState({email: '', password: ''});
 
@@ -219,13 +224,14 @@ this.setState({email: '', password: ''});
 
                                   }
                                   } buttonStyle={{ borderRadius: 15, marginTop: 45, width: 150 }}/>
+          <FormValidationMessage labelStyle={{ fontSize: 13 }} containerStyle={{ marginTop: 5 }}>{this.state.message}</FormValidationMessage>
         {this.renderReset()}
         {this.renderLoading()}
         <View style={{ width: SCREEN_WIDTH, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', position: 'absolute', top: SCREEN_HEIGHT-40 }}>
-        <TouchableOpacity style={this.state.signup? Styles.style2 : Styles.style1} onPress={()=> this.setState({signup: true})}>
+        <TouchableOpacity style={this.state.signup? Styles.style2 : Styles.style1} onPress={()=> {if(!this.state.signup){this.setState({message: ''});}   this.setState({signup: true});}}>
         <Text style={{ color: 'white' }}>Sign Up</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={this.state.signup? Styles.style1 : Styles.style2} onPress={()=> this.setState({signup: false})}>
+        <TouchableOpacity style={this.state.signup? Styles.style1 : Styles.style2} onPress={()=> {if(this.state.signup){this.setState({message: ''});} this.setState({signup: false});}}>
         <Text style={{ color: 'white' }}>Log In</Text>
         </TouchableOpacity>
         </View>
