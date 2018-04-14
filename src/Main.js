@@ -10,13 +10,14 @@ const SCREEN_HEIGHT= Dimensions.get('window').height;
 class Main extends Component {
        state = { onSearch: false, isCross: true, isCancel: false, searchContent:'' };
   static navigationOptions = (props) => {
+
    const { navigation } = props;
    const { params } = navigation.state;
    const { navigate } = navigation;
   const cross = params? <Entypo name="cross" size={20} color='#fff' style={{ marginTop: 2, marginRight: 5 }} /> : <Text />;
   const cancel =  <TouchableOpacity style={{ marginTop: 17, marginRight: 10, marginLeft: 10 }}><Text style={{ fontSize: 15, color: '#007aff' }}>Cancel</Text></TouchableOpacity>;
    return {
-     title: params? params.otherParam : 'Screen',
+     title: 'My Home',
      tabBarIcon: ({ tintColor }) => {
          return <Foundation name="social-myspace" size={30} color={tintColor} />;
        },
@@ -47,7 +48,9 @@ rounded>
      },
 
     headerLeft:
-<Image source={require('../assets/armoilogo2.png')} resizeMode='stretch' style={{ width: 35, height: 35, marginTop: 2, marginBottom: 5, marginLeft: 5, marginRight: 9 }} />
+      <TouchableOpacity onPress={()=>navigation.state.params.onMenu()}>
+      <Image source={require('../assets/armoilogo2.png')} resizeMode='stretch' style={{ width: 35, height: 35, marginTop: 2, marginBottom: 5, marginLeft: 5, marginRight: 9 }}/>
+      </TouchableOpacity>
 
    };
  }
@@ -57,8 +60,12 @@ rounded>
         onBlur: this.offSearch.bind(this),
         changeText: this.changeText.bind(this),
         onGo: this.search.bind(this),
-        onClear: this.clear.bind(this)
+        onClear: this.clear.bind(this),
+        onMenu: this.onMenu.bind(this)
     });
+ }
+ onMenu() {
+   this.props.navigation.navigate("DrawerOpen");
  }
  clear() {
       this.props.navigation.setParams({ searchParam: '', Enter: false });
@@ -96,7 +103,7 @@ rounded>
         shadowOpacity: 1,
         shadowRadius: 5 }}>
 
-        <Text style={{ fontSize: 25, color: '#d1d1d1', fontWeight: 'bold',  shadowOffset: {width: 0, height: 0},
+        <Text style={{ fontSize: 35, color: '#d1d1d1', fontWeight: 'bold',  shadowOffset: {width: 0, height: 0},
           shadowColor: 'black',
           shadowOpacity: 1,
           shadowRadius: 2 }}>No Search Result</Text>
@@ -116,6 +123,10 @@ rounded>
 <Button
 title="Sign out"
 onPress={() => this.props.navigation.navigate('login')}
+/>
+<Button
+title="Menu"
+onPress={() => this.props.navigation.navigate('DrawerOpen')}
 />
       </ScrollView>
     );
