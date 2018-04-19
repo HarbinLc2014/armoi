@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Image, Dimensions, TouchableOpacity, LayoutAnimation, TextInput, Alert} from 'react-native';
 import { FormInput, Button, FormValidationMessage } from 'react-native-elements';
 import {Bubbles, DoubleBounce, Bars, Pulse} from 'react-native-loader';
+import Communications from 'react-native-communications';
 var Parse = require('parse/react-native');
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SimpleIcon from 'react-native-vector-icons/SimpleLineIcons';
@@ -26,6 +27,15 @@ class Login extends Component {
 
   return re.test(email);
 }
+handleEmail() {
+    const to = ['rockylc1826442304@gmail.com']; // string or array of email addresses
+    email(to, {
+        // Optional additional arguments
+        subject: 'Show how to use',
+        body: 'Some body right here'
+    }).catch(console.error)
+}
+
 authorize() {
     this.setState({message: ''});
    const a = {props: this.props, state: this.state, setState: this.setState({loading: false}) };
@@ -164,7 +174,7 @@ this.setState({email: '', password: ''});
                         value={this.state.code}
                         onChangeText={code => this.setState({ code })}
                       />
-              <Button title="Send Email" buttonStyle={{ width: 80, height: 30, borderRadius: 10, marginTop: 5, marginLeft: 10 }} textStyle={{ fontSize: 10 }}/>
+              <Button title="Send Email" buttonStyle={{ width: 80, height: 30, borderRadius: 10, marginTop: 5, marginLeft: 10 }} textStyle={{ fontSize: 10 }} onPress={()=> Communications.email(['emailAddress1', 'emailAddress2'],null,null,'My Subject','My body text')} />
               </View>
         </View>
       );

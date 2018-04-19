@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { StackNavigator, TabNavigator, DrawerNavigator } from 'react-navigation';
-import { Ionicons, Foundation, Entypo, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Ionicons, Foundation, Entypo, FontAwesome, MaterialCommunityIcons, MaterialIcons, Feather } from '@expo/vector-icons';
 import Login from './src/Login';
 import ShopCart from './src/ShopCart';
 import Main from './src/Main';
@@ -14,7 +14,7 @@ export default class App extends React.Component {
   render() {
     const MainNavigator = TabNavigator(
       {
-  //    login: {screen: Login},
+      login: {screen: Login},
       main: {
                   screen: TabNavigator({
                     home: { screen: StackNavigator({
@@ -32,7 +32,7 @@ export default class App extends React.Component {
                             ),
                             drawerLabel: 'Shopcart'
                           }},
-                          settingpage: {screen: Main, navigationOptions:{
+                          settingpage: {screen: Setting, navigationOptions:{
                             drawerIcon: ({tintColor}) => (
                               <FontAwesome name="cog" size={20} color={tintColor} />
                             ),
@@ -60,12 +60,26 @@ export default class App extends React.Component {
                       title: 'Home'
                     }
                    },
-                    fittingRoom: { screen: StackNavigator({
+                    Search: { screen: StackNavigator({
                       fittingMain: { screen: FittingRoom }
-                    }) },
-                    setting: { screen: StackNavigator({
+                    }),
+                    navigationOptions: {
+                      tabBarIcon: ({tintColor}) => (
+                        <Feather name="search" size={30} color={tintColor} />
+                      ),
+                      title: 'Search'
+                    }
+                   },
+                    Explore: { screen: StackNavigator({
                       settingMain: { screen: Setting }
-                    }) },
+                    }),
+                    navigationOptions: {
+                      tabBarIcon: ({tintColor}) => (
+                        <MaterialIcons name="explore" size={30} color={tintColor} />
+                      ),
+                      title: 'Explore'
+                    }
+                   },
                   })
             },
 

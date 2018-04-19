@@ -42,7 +42,7 @@ class SideMenu extends Component {
                 ShopCart
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{ flexDirection: 'row', backgroundColor: this.state.selected==='setting'? 'rgba(0,0,0,0.2)' : 'rgba(0,0,0,0)', height: 70, alignItems: 'center' }} onPress={this.navigateToScreen('shopcart', 'setting')}>
+            <TouchableOpacity style={{ flexDirection: 'row', backgroundColor: this.state.selected==='setting'? 'rgba(0,0,0,0.2)' : 'rgba(0,0,0,0)', height: 70, alignItems: 'center' }} onPress={this.navigateToScreen('settingpage', 'setting')}>
                 <FontAwesome name="cog" size={20} color='#000000' style={{ marginLeft: 15, marginRight: 30 }}/>
                <Text>
                  Settings
