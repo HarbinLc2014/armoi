@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-import { View, Text, Platform, Image, LayoutAnimation, TouchableOpacity, Dimensions, ScrollView, Keyboard, FlatList } from 'react-native';
+import { View, Text, Platform, Image, LayoutAnimation, TouchableOpacity, Dimensions, ScrollView, Keyboard, ListView, FlatList } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Ionicons, Foundation, Entypo } from '@expo/vector-icons';
 import { Header, Item, Icon, Input} from 'native-base';
-import MyBanner from './component/MyBanner';
 
 const SCREEN_WIDTH= Dimensions.get('window').width;
 const SCREEN_HEIGHT= Dimensions.get('window').height;
 
-class Main extends Component {
-       state = { list: [{id:1},{id:2},{id:3},{id:4}], list2: [{id:1},{id:2},{id:3},{id:4},{id:5},{id:6},{id:7},{id:8}], isEnd: false, onSearch: false, isCross: true, isCancel: false, searchContent:'', refreshing: false, loading: true, loadText: 'Im loading now'};
+class Search extends Component {
+       state = { onSearch: false, isCross: true, isCancel: false, searchContent:'' };
   static navigationOptions = (props) => {
 
    const { navigation } = props;
@@ -95,18 +94,6 @@ rounded>
    this.props.navigation.setParams({focusParam: ''});
    this.setState({ onSearch: false });
  }
- async refresh() {
-   this.isEnd=false;
-   this.setState({refreshing: true});
-   try {
-  await this.refs.banner.refresh();
- } finally {
-   this.setState({refreshing: false});
- }
- }
- nextPage() {
-
- }
  renderSearchHeader() {
       LayoutAnimation.easeInEaseOut();
    if(this.state.searchContent!='' && this.state.onSearch) {
@@ -124,55 +111,20 @@ rounded>
         </View>;
  }
  }
+ renderBrandRecommendation() {
+   return (
+     <View />
+   );
+ }
   render() {
     return (
       <ScrollView contentContainerStyle={{ flex: 1, alignItems: 'center', zIndex: 0, position: 'absolute', width:SCREEN_WIDTH }}>
       {this.renderSearchHeader()}
-      <FlatList ref="flatlist"
-      style={{ backgroundColor: '#fff' }}
-       refreshing={this.state.refreshing}
-       numColumns={2}
-       onRefresh={()=>this.refresh()}
-       onEndReached={()=>this.nextPage()}
-       ListHeaderComponent={
-         <View>
-         <MyBanner ref="banner" />
-         <View style={{ paddingTop: 10, paddingBottom: 10, backgroundColor: '#fff', paddingLeft: 10 }}>
-         <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Your Favorite Brand</Text>
-         </View>
-         </View>
-       }
-       renderItem={({ item, index })=>
-            <View style={{ marginTop: index>1?20:0, marginLeft:  index%2===1 ? 10:0 , marginRight:  index % 2 === 0 ? 10:0, justifyContent: 'center', alignItems: 'center', width: SCREEN_WIDTH/2-10, borderRadius: 10, height: SCREEN_WIDTH/2-10, backgroundColor: 'rgba(0,0,0,0.05)' }}>
-            <Text style={{ textAlign: 'center' }}>Sample</Text>
-            </View>
-        }
-       ListFooterComponent={<View style={{ backgroundColor: '#000000', justifyContent: 'center', alignItems: 'center', marginTop: 20 }}><Text style={{ fontSize: 20, textAlign: 'center', color: '#fff', width: SCREEN_WIDTH }}>{this.state.loadText}</Text></View>}
-       onScroll={(e)=>this._onScroll(e.nativeEvent)}
-       scrollEventThrottle={1}
-       keyExtractor={(brand)=>brand.id}
-       data={this.state.list}
-      />
-      <View style={{marginTop: 20, paddingTop: 10, paddingBottom: 10, backgroundColor: '#fff', paddingLeft: 10, width: SCREEN_WIDTH }}>
-      <Text style={{ fontSize: 20, fontWeight: 'bold' }}>New Brand Recommendation</Text>
-      </View>
-      <FlatList ref="flatlist2"
-        style={{ backgroundColor: '#fff' }}
-        refreshing={this.state.refreshing}
-        onRefresh={()=>this.refresh()}
-        onEndReached={()=>this.nextPage()}
-        horizontal
-        renderItem={({ item, index })=>
-             <View style={{ marginTop: 10, marginBottom: 20, marginLeft: index===0 ? 10:0, marginRight: 10, justifyContent: 'center', alignItems: 'center', width: SCREEN_WIDTH/4, borderRadius: 10, height: SCREEN_WIDTH/4, backgroundColor: 'rgba(0,0,0,0.05)' }}>
-             <Text style={{ textAlign: 'center' }}>Sample</Text>
-             </View>
-         }
-      keyExtractor={(brand)=>brand.id}
-      data={this.state.list2}
-      />
+      <Text>{this.state.onSearch? 'Searching' : 'not Searching'}</Text>
+      {this.renderBrandRecommendation()}
       </ScrollView>
     );
   }
 }
 
-export default Main;
+export default Search;

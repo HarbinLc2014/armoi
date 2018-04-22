@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, Image, Dimensions, TouchableOpacity, LayoutAnimation, TextInput, Alert} from 'react-native';
+import { View, Text, Image, Dimensions, TouchableOpacity, LayoutAnimation, TextInput, Alert, Keyboard} from 'react-native';
 import { FormInput, Button, FormValidationMessage } from 'react-native-elements';
 import {Bubbles, DoubleBounce, Bars, Pulse} from 'react-native-loader';
-import Communications from 'react-native-communications';
 var Parse = require('parse/react-native');
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SimpleIcon from 'react-native-vector-icons/SimpleLineIcons';
@@ -230,6 +229,7 @@ this.setState({email: '', password: ''});
         </View>
         <Button title={this.state.signup? "Sign Up" : "Log In"} onPress={()=>{
                                     this.setState({loading: true});
+                                    Keyboard.dismiss();
                                      this.authorize();
 
                                   }

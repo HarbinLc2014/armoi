@@ -6,7 +6,7 @@ import Login from './src/Login';
 import ShopCart from './src/ShopCart';
 import Main from './src/Main';
 import Setting from './src/Setting';
-import FittingRoom from './src/FittingRoom';
+import Search from './src/SearchPage';
 import Menu from './src/Menu';
 import SideMenu from './src/component/SideMenu';
 
@@ -14,7 +14,7 @@ export default class App extends React.Component {
   render() {
     const MainNavigator = TabNavigator(
       {
-      login: {screen: Login},
+    //  login: {screen: Login},
       main: {
                   screen: TabNavigator({
                     home: { screen: StackNavigator({
@@ -61,7 +61,7 @@ export default class App extends React.Component {
                     }
                    },
                     Search: { screen: StackNavigator({
-                      fittingMain: { screen: FittingRoom }
+                      fittingMain: { screen: Search }
                     }),
                     navigationOptions: {
                       tabBarIcon: ({tintColor}) => (
@@ -70,6 +70,16 @@ export default class App extends React.Component {
                       title: 'Search'
                     }
                    },
+                   Catergorize: { screen: StackNavigator({
+                     catergorize: { screen: Setting }
+                   }),
+                   navigationOptions: {
+                     tabBarIcon: ({tintColor}) => (
+                       <Feather name="grid" size={30} color={tintColor} />
+                     ),
+                     title: 'Collection'
+                   }
+                  },
                     Explore: { screen: StackNavigator({
                       settingMain: { screen: Setting }
                     }),
@@ -80,6 +90,7 @@ export default class App extends React.Component {
                       title: 'Explore'
                     }
                    },
+
                   })
             },
 

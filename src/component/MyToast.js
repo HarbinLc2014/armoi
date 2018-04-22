@@ -13,7 +13,9 @@ class MyToast extends Component{
         setTimeout(() => this.setState({
             visible: true
         }), 2000); // show toast after 2s
-
+        setTimeout(() => this.setState({
+            visible: false
+        }), 5000); // show toast after 2s
     };
 
     render() {
