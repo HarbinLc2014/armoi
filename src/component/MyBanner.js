@@ -10,7 +10,7 @@ class MyBanner extends Component {
     super(props);
     this.state = {
       banners: [{id:1},{id:2},{id:3},{id:4}],
-      quicks: [{id:'cao'},{id:'ni'},{id:'da'},{id:'ye'}],
+      quicks: [{id:'A'},{id:'B'},{id:'C'},{id:'D'}],
       status: false,
     }
   }

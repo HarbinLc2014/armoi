@@ -143,9 +143,15 @@ rounded>
          </View>
        }
        renderItem={({ item, index })=>
+            <TouchableOpacity onPress={()=>
+              this.props.navigation.navigate('Details', {
+                            item: item,
+                          })
+            }>
             <View style={{ marginTop: index>1?20:0, marginLeft:  index%2===1 ? 10:0 , marginRight:  index % 2 === 0 ? 10:0, justifyContent: 'center', alignItems: 'center', width: SCREEN_WIDTH/2-10, borderRadius: 10, height: SCREEN_WIDTH/2-10, backgroundColor: 'rgba(0,0,0,0.05)' }}>
             <Text style={{ textAlign: 'center' }}>Sample</Text>
             </View>
+            </TouchableOpacity>
         }
        ListFooterComponent={<View style={{ backgroundColor: '#000000', justifyContent: 'center', alignItems: 'center', marginTop: 20 }}><Text style={{ fontSize: 20, textAlign: 'center', color: '#fff', width: SCREEN_WIDTH }}>{this.state.loadText}</Text></View>}
        onScroll={(e)=>this._onScroll(e.nativeEvent)}
@@ -163,9 +169,11 @@ rounded>
         onEndReached={()=>this.nextPage()}
         horizontal
         renderItem={({ item, index })=>
+             <TouchableOpacity>
              <View style={{ marginTop: 10, marginBottom: 20, marginLeft: index===0 ? 10:0, marginRight: 10, justifyContent: 'center', alignItems: 'center', width: SCREEN_WIDTH/4, borderRadius: 10, height: SCREEN_WIDTH/4, backgroundColor: 'rgba(0,0,0,0.05)' }}>
              <Text style={{ textAlign: 'center' }}>Sample</Text>
              </View>
+             </TouchableOpacity>
          }
       keyExtractor={(brand)=>brand.id}
       data={this.state.list2}

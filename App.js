@@ -8,6 +8,7 @@ import Main from './src/Main';
 import Setting from './src/Setting';
 import Search from './src/SearchPage';
 import Menu from './src/Menu';
+import ClothDetail from './src/component/ClothDetail';
 import SideMenu from './src/component/SideMenu';
 
 export default class App extends React.Component {
@@ -51,7 +52,8 @@ export default class App extends React.Component {
                             drawerPosition:'left',
                         }
                       )
-                       }
+                    },
+                    Details: { screen: ClothDetail }
                     }),
                     navigationOptions: {
                       tabBarIcon: ({tintColor}) => (
