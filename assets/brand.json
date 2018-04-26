@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "code": "yogipeaceclub",
+    "type": "",
+    "src": require('./Logo/yogipeaceclub.png')
+  },
+  {
+    "id": 2,
+    "code": "aje",
+    "type": "",
+    "src": require('./Logo/aje.png')
+  },
+  {
+    "id": 3,
+    "code": "pe-nation",
+    "type": "",
+    "src": require('./Logo/pe-nation.png')
+  },
+  {
+    "id": 4,
+    "code": "bnkr",
+    "type": "",
+    "src": require('./Logo/bnkr.png')
+  },
+]

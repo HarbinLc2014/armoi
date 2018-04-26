@@ -4,12 +4,14 @@ import { Button } from 'react-native-elements';
 import { Ionicons, Foundation, Entypo } from '@expo/vector-icons';
 import { Header, Item, Icon, Input} from 'native-base';
 import MyBanner from './component/MyBanner';
+import Brands from '../assets/brand.json';
 
 const SCREEN_WIDTH= Dimensions.get('window').width;
 const SCREEN_HEIGHT= Dimensions.get('window').height;
 
 class Main extends Component {
-       state = { list: [{id:1},{id:2},{id:3},{id:4}], list2: [{id:1},{id:2},{id:3},{id:4},{id:5},{id:6},{id:7},{id:8}], isEnd: false, onSearch: false, isCross: true, isCancel: false, searchContent:'', refreshing: false, loading: true, loadText: 'Im loading now'};
+       state = { list: Brands, list2: [{id:1, src: require('../assets/Logo/images_logo.png')},{id:2, src: require('../assets/Logo/cmeocollective.png')},{id:3, src: require('../assets/Logo/finderskeepersthelabel.png')},{id:4, src: require('../assets/Logo/christopheresber.jpg')},
+       {id:5, src: require('../assets/Logo/camillaandmarc.jpg')},{id:6, src: require('../assets/Logo/shemademe.png')},{id:7, src: require('../assets/Logo/shopbop.png')},{id:8, src: require('../assets/Logo/kitx.jpg')}], isEnd: false, onSearch: false, isCross: true, isCancel: false, searchContent:'', refreshing: false, loading: true, loadText: ''};
   static navigationOptions = (props) => {
 
    const { navigation } = props;
@@ -148,12 +150,12 @@ rounded>
                             item: item,
                           })
             }>
-            <View style={{ marginTop: index>1?20:0, marginLeft:  index%2===1 ? 10:0 , marginRight:  index % 2 === 0 ? 10:0, justifyContent: 'center', alignItems: 'center', width: SCREEN_WIDTH/2-10, borderRadius: 10, height: SCREEN_WIDTH/2-10, backgroundColor: 'rgba(0,0,0,0.05)' }}>
-            <Text style={{ textAlign: 'center' }}>Sample</Text>
+            <View style={{ marginTop: index>1?20:0, marginLeft:  index%2===1 ? 10:0 , marginRight:  index % 2 === 0 ? 10:0, justifyContent: 'center', alignItems: 'center', width: SCREEN_WIDTH/2-10, borderRadius: 10, height: SCREEN_WIDTH/2-10, backgroundColor: 'rgba(0,0,0,0)' }}>
+            <Image source={item.src} resizeMode='contain' style={{ width: SCREEN_WIDTH/2-40, height: SCREEN_WIDTH/2-40 }}/>
             </View>
             </TouchableOpacity>
         }
-       ListFooterComponent={<View style={{ backgroundColor: '#000000', justifyContent: 'center', alignItems: 'center', marginTop: 20 }}><Text style={{ fontSize: 20, textAlign: 'center', color: '#fff', width: SCREEN_WIDTH }}>{this.state.loadText}</Text></View>}
+       ListFooterComponent={<View style={{ backgroundColor: '#ffffff', justifyContent: 'center', alignItems: 'center', marginTop: 20 }}><Text style={{ fontSize: 20, textAlign: 'center', color: '#fff', width: SCREEN_WIDTH }}>{this.state.loadText}</Text></View>}
        onScroll={(e)=>this._onScroll(e.nativeEvent)}
        scrollEventThrottle={1}
        keyExtractor={(brand)=>brand.id}
@@ -170,8 +172,8 @@ rounded>
         horizontal
         renderItem={({ item, index })=>
              <TouchableOpacity>
-             <View style={{ marginTop: 10, marginBottom: 20, marginLeft: index===0 ? 10:0, marginRight: 10, justifyContent: 'center', alignItems: 'center', width: SCREEN_WIDTH/4, borderRadius: 10, height: SCREEN_WIDTH/4, backgroundColor: 'rgba(0,0,0,0.05)' }}>
-             <Text style={{ textAlign: 'center' }}>Sample</Text>
+             <View style={{ marginTop: 10, marginBottom: 20, marginLeft: index===0 ? 20:0, marginRight: 20, justifyContent: 'center', alignItems: 'center', width: SCREEN_WIDTH/4+80, borderRadius: 10, height: SCREEN_WIDTH/4, backgroundColor: 'rgba(0,0,0,0)' }}>
+              <Image source={item.src} resizeMode='contain' style={{ width: SCREEN_WIDTH/4+80, height: SCREEN_WIDTH/4 }}/>
              </View>
              </TouchableOpacity>
          }
