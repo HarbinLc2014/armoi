@@ -5,6 +5,8 @@ import { Ionicons, Foundation, Entypo, FontAwesome, MaterialCommunityIcons, Mate
 import Login from './src/Login';
 import ShopCart from './src/ShopCart';
 import Main from './src/Main';
+import Size from './src/Size';
+import Recommend from './src/Recommend';
 import Setting from './src/Setting';
 import Search from './src/SearchPage';
 import Menu from './src/Menu';
@@ -83,7 +85,9 @@ export default class App extends React.Component {
                    }
                   },
                     Explore: { screen: StackNavigator({
-                      settingMain: { screen: Setting }
+                      settingMain: { screen: Setting },
+                      size: { screen: Size },
+                      recommend: { screen: Recommend }
                     }),
                     navigationOptions: {
                       tabBarIcon: ({tintColor}) => (

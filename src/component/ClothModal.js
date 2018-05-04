@@ -21,20 +21,23 @@ class ClothModal extends Component {
             animationType="slide"
             onRequestClose={() => {
             }}
-
         >
 
         <View style={{ width: SCREEN_WIDTH, height: SCREEN_HEIGHT, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'center', alignItems: 'center' }} >
+<TouchableWithoutFeedback onPress={this.props.cancel}><View style={{ width: SCREEN_WIDTH, height:135 }} /></TouchableWithoutFeedback>
+<View style={{ flexDirection: 'row', width: SCREEN_WIDTH, height: SCREEN_HEIGHT-270 }}>
+<TouchableWithoutFeedback onPress={this.props.cancel}><View style={{ width:35, height: SCREEN_HEIGHT-270 }} /></TouchableWithoutFeedback>
 
   <View style={{ flexDirection: 'column', width: SCREEN_WIDTH-70, height: SCREEN_HEIGHT-270, backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center', borderRadius: 20, borderWidth: 0.5, borderColor: '#d1d1d1' }}>
           <ScrollView contentContainerStyle={{ justifyContent: 'center', alignItems: 'center' }}>
   <Image source={this.props.item.src} resizeMethod='scale' resizeMode='contain' style={{ marginTop: 50, width: SCREEN_WIDTH-150, height: SCREEN_WIDTH-150 }}/>
-  <Text style={{fontSize: 30, margin: 10 }}>Suit</Text>
-  <Text style={{fontSize: 25 }}>$120</Text>
-  <Button title="Cancel" buttonStyle={{ backgroundColor: 'rgba(0,0,0,0)', width: 80, height: 30 }} titleStyle={{ color:'#000', fontSize: 30, fontWeight: 'bold' }} onPress={this.props.cancel} />
+  <Text style={{fontSize: 25, margin: 10 }}>Deep Color Suit</Text>
+  <Text style={{fontSize: 22 }}>Price: $120</Text>
             </ScrollView>
   </View>
-
+<TouchableWithoutFeedback onPress={this.props.cancel}><View style={{ width:35, height: SCREEN_HEIGHT-270 }} /></TouchableWithoutFeedback>
+        </View>
+<TouchableWithoutFeedback onPress={this.props.cancel}><View style={{ width: SCREEN_WIDTH, height:135 }} /></TouchableWithoutFeedback>
         </View>
 
         </Modal>
