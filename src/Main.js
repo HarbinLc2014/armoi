@@ -1,17 +1,59 @@
 import React, { Component } from 'react';
 import { View, Text, Platform, Image, LayoutAnimation, TouchableOpacity, Dimensions, ScrollView, Keyboard, FlatList } from 'react-native';
 import { Button } from 'react-native-elements';
+import FastImage from 'react-native-fast-image';
 import { Ionicons, Foundation, Entypo } from '@expo/vector-icons';
 import { Header, Item, Icon, Input} from 'native-base';
+import { AppLoading, Asset, Font, Expo } from 'expo';
 import MyBanner from './component/MyBanner';
 import Brands from '../assets/brand.json';
 
 const SCREEN_WIDTH= Dimensions.get('window').width;
 const SCREEN_HEIGHT= Dimensions.get('window').height;
+const images = [
+      require('../assets/Logo/abiandjoseph.png'),
+      require('../assets/Logo/bassike.png'),
+      require('../assets/Logo/ellery.png'),
+       require('../assets/Logo/oscarandwild.png'),
+       require('../assets/Logo/aje.png'),
+       require('../assets/Logo/bnkr.png'),
+       require('../assets/Logo/camillaandmarc.jpg'),
+       require('../assets/Logo/christopheresber.jpg'),
+       require('../assets/Logo/cmeocollective.png'),
+       require('../assets/Logo/dionlee.jpg'),
+       require('../assets/Logo/finderskeepersthelabel.png'),
+       require('../assets/Logo/firstbase.png'),
+       require('../assets/Logo/images_logo.png'),
+       require('../assets/Logo/kitx.jpg'),
+       require('../assets/Logo/loverthelabel.png'),
+       require('../assets/Logo/shemademe.png'),
+       require('../assets/Logo/oscarandwild.png'),
+       require('../assets/Logo/shopbop.png'),
+       require('../assets/Logo/oscarandwild.png'),
+       require('../assets/Logo/yogipeaceclub.png'),
+       require('../assets/Logo/sirthelabel.jpg'),
+       require('../assets/Logo/pe-nation.png')
+    ];
+    function cacheImages(images) {
+      return images.map(image => {
+        if (typeof image === 'string') {
+          return Image.prefetch(image);
+        } else {
+          return Asset.fromModule(image).downloadAsync();
+        }
+      });
+    }
 
 class Main extends Component {
-       state = { list: Brands, list2: [{id:1, src: require('../assets/Logo/images_logo.png')},{id:2, src: require('../assets/Logo/cmeocollective.png')},{id:3, src: require('../assets/Logo/finderskeepersthelabel.png')},{id:4, src: require('../assets/Logo/christopheresber.jpg')},
+       state = { appIsReady: false, list: Brands, list2: [{id:1, src: require('../assets/Logo/images_logo.png')},{id:2, src: require('../assets/Logo/cmeocollective.png')},{id:3, src: require('../assets/Logo/finderskeepersthelabel.png')},{id:4, src: require('../assets/Logo/christopheresber.jpg')},
        {id:5, src: require('../assets/Logo/camillaandmarc.jpg')},{id:6, src: require('../assets/Logo/shemademe.png')},{id:7, src: require('../assets/Logo/shopbop.png')},{id:8, src: require('../assets/Logo/kitx.jpg')}], isEnd: false, onSearch: false, isCross: true, isCancel: false, searchContent:'', refreshing: false, loading: true, loadText: ''};
+
+       async _loadAssetsAsync() {
+         const imageAssets = cacheImages(images);
+
+             await Promise.all([...imageAssets]);
+         this.setState({appIsReady: true});
+       }
   static navigationOptions = (props) => {
 
    const { navigation } = props;
@@ -58,6 +100,7 @@ rounded>
    };
  }
  componentWillMount() {
+   this._loadAssetsAsync();
    this.props.navigation.setParams({
         onFocus: this.onSearch.bind(this),
         onBlur: this.offSearch.bind(this),
@@ -127,6 +170,15 @@ rounded>
  }
  }
   render() {
+    if (!this.state.appIsReady) {
+      return (
+        <AppLoading
+          startAsync={this._loadAssetsAsync}
+          onFinish={() => this.setState({ appIsReady: true })}
+          onError={console.warn}
+        />
+      );
+    }
     return (
       <ScrollView contentContainerStyle={{ flex: 1, alignItems: 'center', zIndex: 0, position: 'absolute', width:SCREEN_WIDTH }}>
       {this.renderSearchHeader()}
@@ -151,7 +203,7 @@ rounded>
                           })
             }>
             <View style={{ marginTop: index>1?20:0, marginLeft:  index%2===1 ? 10:0 , marginRight:  index % 2 === 0 ? 10:0, justifyContent: 'center', alignItems: 'center', width: SCREEN_WIDTH/2-10, borderRadius: 10, height: SCREEN_WIDTH/2-10, backgroundColor: 'rgba(0,0,0,0)' }}>
-            <Image source={item.src} resizeMode='contain' style={{ width: SCREEN_WIDTH/2-40, height: SCREEN_WIDTH/2-40 }}/>
+            <FastImage source={item.src} resizeMode='contain' style={{ width: SCREEN_WIDTH/2-40, height: SCREEN_WIDTH/2-40 }}/>
             </View>
             </TouchableOpacity>
         }
@@ -173,7 +225,7 @@ rounded>
         renderItem={({ item, index })=>
              <TouchableOpacity>
              <View style={{ marginTop: 10, marginBottom: 20, marginLeft: index===0 ? 20:0, marginRight: 20, justifyContent: 'center', alignItems: 'center', width: SCREEN_WIDTH/4+80, borderRadius: 10, height: SCREEN_WIDTH/4, backgroundColor: 'rgba(0,0,0,0)' }}>
-              <Image source={item.src} resizeMode='contain' style={{ width: SCREEN_WIDTH/4+80, height: SCREEN_WIDTH/4 }}/>
+              <FastImage source={item.src} resizeMode='contain' style={{ width: SCREEN_WIDTH/4+80, height: SCREEN_WIDTH/4 }}/>
              </View>
              </TouchableOpacity>
          }

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text, TouchableOpacity, Dimensions, Image} from 'react-native';
+import FastImage from 'react-native-fast-image';
 import Swiper from 'react-native-swiper';
 
 const SCREEN_WIDTH= Dimensions.get('window').width;
@@ -29,7 +30,7 @@ class MyBanner extends Component {
       {this.state.banners.length===1 && <TouchableOpacity
       onPress={()=> this.onPressRow(this.state.banners[0])}>
       <View style={{ width: SCREEN_WIDTH-150, height: 200, justifyContent: 'center', alignItems: 'center' }}>
-      <Image style={{
+      <FastImage style={{
         width: SCREEN_WIDTH-150, height: 200
       }} source={require('../../assets/armoilogo.png')} resizeMode="contain" resizeMethod="scale"
       />
@@ -40,7 +41,7 @@ class MyBanner extends Component {
         style={{ height: 150, justifyContent: 'center', alignItems: 'center' }}>
         <Swiper autoplay={true} >
           {this.state.banners.map((item, index) => <View key={index} style={{ height: 150, justifyContent: 'center', alignItems: 'center' }}>
-            <Image resizeMode="cover" resizeMethod="scale"
+            <FastImage resizeMode="cover" resizeMethod="scale"
               source={item.src}
               style={{ width: SCREEN_WIDTH-50, height: 100 }}
             />
@@ -51,7 +52,7 @@ class MyBanner extends Component {
         {this.state.quicks.length > 0 &&
           <View style={{ flexDirection: 'row', backgroundColor: '#fff', marginLeft: 12, marginRight: 12, marginTop: -15, marginBottom: 15, borderRadius: 10, borderWidth: 0.5, borderColor: '#d1d1d1', height: 100, width: SCREEN_WIDTH-24 }} >
             {this.state.quicks.map((item, index) => <TouchableOpacity key={index} style={{ flexDirection: 'column', width: (SCREEN_WIDTH-24)/4, height: 100, justifyContent: 'center', alignItems: 'center', padding: 15 }}>
-            <Image resizeMode="contain" resizeMethod="scale"
+            <FastImage resizeMode="contain" resizeMethod="scale"
               source={item.src}
               style={{ width: (SCREEN_WIDTH-24)/4-30, height: (SCREEN_WIDTH-24)/4-30 }}
             />

@@ -16,6 +16,11 @@
     },
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "loading": {
+    "backgroundColor": "#F1F1F1",
+    "backgroundImage": "./assets/armoilogo.png",
+    "icon": "./assets/armoilogo.png"
+  },
   }
 }
