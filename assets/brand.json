@@ -1,26 +1,26 @@
 [
   {
     "id": 1,
-    "code": "yogipeaceclub",
-    "type": "",
-    "src": require('./Logo/yogipeaceclub.png')
+    "code": "儿童营养",
+    "type": "儿童营养",
+    "src": require('./Logos/infant.png')
   },
   {
     "id": 2,
-    "code": "aje",
-    "type": "",
-    "src": require('./Logo/aje.png')
+    "code": "学习必备",
+    "type": "学习必备",
+    "src": require('./Logos/true.jpeg')
   },
   {
     "id": 3,
-    "code": "pe-nation",
-    "type": "",
-    "src": require('./Logo/pe-nation.png')
+    "code": "工作舒压",
+    "type": "工作舒压",
+    "src": require('./Logos/work.png')
   },
   {
     "id": 4,
-    "code": "bnkr",
-    "type": "",
-    "src": require('./Logo/bnkr.png')
+    "code": "老年保健",
+    "type": "老年保健",
+    "src": require('./Logos/old.png')
   },
 ]

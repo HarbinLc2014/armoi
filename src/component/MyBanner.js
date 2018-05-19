@@ -10,8 +10,8 @@ class MyBanner extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      banners: [{id:1, src: require('../../assets/Logo/abiandjoseph.png')},{id:2, src: require('../../assets/Logo/bassike.png')},{id:3, src: require('../../assets/Logo/ellery.png')},{id:4, src: require('../../assets/Logo/oscarandwild.png')}],
-      quicks: [{id:'KiTx', src: require('../../assets/Logo/kitx.jpg')},{id:'yogipeaceclub', src: require('../../assets/Logo/yogipeaceclub.png')},{id:'SIR.', src: require('../../assets/Logo/sirthelabel.jpg')},{id:'dionlee', src: require('../../assets/Logo/dionlee.jpg')}],
+      banners: [{id:1, src: require('../../assets/Logos/SwisseLogo.jpg')},{id:2, src: require('../../assets/Logos/BlackMoresLogo.jpg')},{id:3, src: require('../../assets/Logos/NatureswayLogo.jpg')},{id:4, src: require('../../assets/Logos/BioislandLogo.jpg')}],
+      quicks: [{id:'KiTx', src: require('../../assets/Logos/1.png')},{id:'yogipeaceclub', src: require('../../assets/Logos/2.png')},{id:'SIR.', src: require('../../assets/Logos/3.png')},{id:'dionlee', src: require('../../assets/Logos/4.png')}],
       status: false,
     }
   }

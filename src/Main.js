@@ -46,8 +46,8 @@ const images = [
     }
 
 class Main extends Component {
-       state = { appIsReady: false, list: Brands, list2: [{id:1, src: require('../assets/Logo/images_logo.png')},{id:2, src: require('../assets/Logo/cmeocollective.png')},{id:3, src: require('../assets/Logo/finderskeepersthelabel.png')},{id:4, src: require('../assets/Logo/christopheresber.jpg')},
-       {id:5, src: require('../assets/Logo/camillaandmarc.jpg')},{id:6, src: require('../assets/Logo/shemademe.png')},{id:7, src: require('../assets/Logo/shopbop.png')},{id:8, src: require('../assets/Logo/kitx.jpg')}], isEnd: false, onSearch: false, isCross: true, isCancel: false, searchContent:'', refreshing: false, loading: true, loadText: ''};
+       state = { appIsReady: false, list: Brands, list2: [{id:1, desc:'身体保养', src: require('../assets/Logos/health.jpg')},{id:2, desc: '内脏调理', src: require('../assets/Logos/heart.jpg')},{id:3, desc: '免疫增强', src: require('../assets/Logos/免疫力.jpg')},{id:4, desc: '微量元素', src: require('../assets/Logos/center.jpeg')},
+       {id:5, desc: '女性专栏', src: require('../assets/Logos/women.png')},{id:6, desc: '澳洲食品', src: require('../assets/Logos/snack.jpg')}], isEnd: false, onSearch: false, isCross: true, isCancel: false, searchContent:'', refreshing: false, loading: true, loadText: ''};
 
        async _loadAssetsAsync() {
          const imageAssets = cacheImages(images);
@@ -67,27 +67,7 @@ class Main extends Component {
      tabBarIcon: ({ tintColor }) => {
          return <Foundation name="social-myspace" size={30} color={tintColor} />;
        },
-       headerTitle:
-<Header
-style={{ width: SCREEN_WIDTH-80, height: 64, marginBottom: 18, backgroundColor:'rgba(0,0,0,0)', alignItems: 'center', justifyContent: 'center' }}
-searchBar
-rounded>
-        <Item>
-            <Icon name="ios-search" onPress={()=> console.log('asdasd')} />
-            <Input
-            autoCorrect={false}
-              placeholder="Search"
-              onFocus={()=>    { LayoutAnimation.easeInEaseOut(); navigation.state.params.onFocus(); }}
-              onBlur={()=> {LayoutAnimation.easeInEaseOut(); navigation.state.params.onBlur();}}
-              value={params? params.searchParam : ''}
-              onChangeText={searchParam=>navigation.state.params.changeText(searchParam)}
-            />
-            {params? params.Enter? <Entypo name="cross" size={20} color='#000' style={{ marginTop: 2, marginRight: 5 }} onPress={()=> {LayoutAnimation.easeInEaseOut(); navigation.state.params.onClear();}}/> : null : null}
-          </Item>
-          {params? <TouchableOpacity onPress={()=> { Keyboard.dismiss(); LayoutAnimation.easeInEaseOut(); navigation.state.params.onBlur();}}><Text style={{ fontSize: 15, color: '#007aff', marginTop: 3, marginRight: -8, marginLeft: 8 }}>{params.focusParam}</Text></TouchableOpacity> : null}
-          </Header>,
-          headerRight:
-            <TouchableOpacity style={{ marginRight: 10, marginLeft: -5 }} onPress={()=> navigation.state.params.onGo() }><Text style={{ fontSize: 17, color: '#007aff' }}>Go</Text></TouchableOpacity>,
+       headerTitle: "澳洲代购小店",
      headerStyle: {
        marginTop: Platform.OS === 'android' ? 24 : 0,
        height: 45
@@ -191,7 +171,6 @@ rounded>
          <View>
          <MyBanner ref="banner" />
          <View style={{ paddingTop: 10, paddingBottom: 10, backgroundColor: '#fff', paddingLeft: 10 }}>
-         <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Your Favorite Brand</Text>
          </View>
          </View>
        }
@@ -203,6 +182,7 @@ rounded>
             }>
             <View style={{ marginTop: index>1?20:0, marginLeft:  index%2===1 ? 10:0 , marginRight:  index % 2 === 0 ? 10:0, justifyContent: 'center', alignItems: 'center', width: SCREEN_WIDTH/2-10, borderRadius: 10, height: SCREEN_WIDTH/2-10, backgroundColor: 'rgba(0,0,0,0)' }}>
             <FastImage source={item.src} resizeMode='contain' style={{ width: SCREEN_WIDTH/2-40, height: SCREEN_WIDTH/2-40 }}/>
+            <Text style={{ marginTop: 10, fontSize: 15, fontWeight: 'bold' }}>{item.code}</Text>
             </View>
             </TouchableOpacity>
         }
@@ -213,7 +193,7 @@ rounded>
        data={this.state.list}
       />
       <View style={{marginTop: 20, paddingTop: 10, paddingBottom: 10, backgroundColor: '#fff', paddingLeft: 10, width: SCREEN_WIDTH }}>
-      <Text style={{ fontSize: 20, fontWeight: 'bold' }}>New Brand Recommendation</Text>
+      <Text style={{ fontSize: 20, fontWeight: 'bold' }}>其它分类</Text>
       </View>
       <FlatList ref="flatlist2"
         style={{ backgroundColor: '#fff' }}
@@ -225,6 +205,7 @@ rounded>
              <TouchableOpacity>
              <View style={{ marginTop: 10, marginBottom: 20, marginLeft: index===0 ? 20:0, marginRight: 20, justifyContent: 'center', alignItems: 'center', width: SCREEN_WIDTH/4+80, borderRadius: 10, height: SCREEN_WIDTH/4, backgroundColor: 'rgba(0,0,0,0)' }}>
               <FastImage source={item.src} resizeMode='contain' style={{ width: SCREEN_WIDTH/4+80, height: SCREEN_WIDTH/4 }}/>
+              <Text style={{ fontSize: 13, textAlign: 'center', fontWeight: 'bold', marginTop: 12, marginBottom: 15 }}>{item.desc}</Text>
              </View>
              </TouchableOpacity>
          }

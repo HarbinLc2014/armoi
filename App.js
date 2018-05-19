@@ -6,9 +6,10 @@ import Login from './src/Login';
 import ShopCart from './src/ShopCart';
 import Main from './src/Main';
 import Size from './src/Size';
+import ProductList from './src/ProductList';
 import Recommend from './src/Recommend';
 import Setting from './src/Setting';
-import Collection from './src/Collection';
+import Product from './src/Product';
 import Search from './src/SearchPage';
 import Menu from './src/Menu';
 import ClothDetail from './src/component/ClothDetail';
@@ -76,7 +77,7 @@ export default class App extends React.Component {
                     }
                    },
                    Catergorize: { screen: StackNavigator({
-                     catergorize: { screen: Collection }
+                     catergorize: { screen: ProductList }
                    }),
                    navigationOptions: {
                      tabBarIcon: ({tintColor}) => (

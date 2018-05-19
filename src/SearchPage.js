@@ -17,13 +17,9 @@ class Search extends Component {
   const cross = params? <Entypo name="cross" size={20} color='#fff' style={{ marginTop: 2, marginRight: 5 }} /> : <Text />;
   const cancel =  <TouchableOpacity style={{ marginTop: 17, marginRight: 10, marginLeft: 10 }}><Text style={{ fontSize: 15, color: '#007aff' }}>Cancel</Text></TouchableOpacity>;
    return {
-     title: 'My Home',
-     tabBarIcon: ({ tintColor }) => {
-         return <Foundation name="social-myspace" size={30} color={tintColor} />;
-       },
        headerTitle:
 <Header
-style={{ width: SCREEN_WIDTH-80, height: 64, marginBottom: 18, backgroundColor:'rgba(0,0,0,0)', alignItems: 'center', justifyContent: 'center' }}
+style={{ width: SCREEN_WIDTH-40, height: 64, marginBottom: 18, marginLeft: -45, backgroundColor:'rgba(0,0,0,0)', alignItems: 'center', justifyContent: 'center' }}
 searchBar
 rounded>
         <Item>
@@ -45,12 +41,7 @@ rounded>
      headerStyle: {
        marginTop: Platform.OS === 'android' ? 24 : 0,
        height: 45
-     },
-
-    headerLeft:
-      <TouchableOpacity onPress={()=>navigation.state.params.onMenu()}>
-      <Image source={require('../assets/armoilogo2.png')} resizeMode='stretch' style={{ width: 35, height: 35, marginTop: 2, marginBottom: 5, marginLeft: 5, marginRight: 9 }}/>
-      </TouchableOpacity>
+     }
 
    };
  }

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { AppLoading, Asset, Font, Expo } from 'expo';
-import { ScrollView, View, Text, Image, ActivityIndicator, PickerIOS } from 'react-native';
+import { ScrollView, View, Text, Image, ActivityIndicator, PickerIOS, Button, Dimensions } from 'react-native';
+
+const SCREEN_WIDTH= Dimensions.get('window').width;
+const SCREEN_HEIGHT= Dimensions.get('window').height;
 
 const product = [
 {
@@ -23,7 +26,7 @@ const images = [
         }
       });
     }
-class Collection extends Component {
+class Product extends Component {
   state = { appIsReady: false, size: "30粒装", amount: "1" };
   async _loadAssetsAsync() {
     const imageAssets = cacheImages(images);
@@ -72,9 +75,12 @@ class Collection extends Component {
       </View>
       <Text style={{ fontSize: 20, color: '#000', textAlign: 'center', fontWeight: 'bold', marginBottom: 30 }}>${product[0].pricelist[this.state.size]} * {this.state.amount}  =  ${product[0].pricelist[this.state.size]*this.state.amount}</Text>
       <Text style={{ fontSize: 15, color: '#000', textAlign: 'center', marginBottom: 30 }}>{product[0].description}</Text>
+      <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row', width: SCREEN_WIDTH, marginBottom: 25 }}>
+      <Button title='加入购物车'/><View style={{ width: 100}} /><Button title='马上购买'/>
+      </View>
     </ScrollView>
     );
   }
 }
 
-export default Collection;
+export default Product;
