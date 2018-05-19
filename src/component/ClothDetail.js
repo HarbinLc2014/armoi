@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, Image, Dimensions, FlatList, TouchableOpacity, ScrollView } from 'react-native';
+import { ActivityIndicator, View, Text, Image, Dimensions, FlatList, TouchableOpacity, ScrollView } from 'react-native';
 import { AppLoading, Asset, Font, Expo } from 'expo';
+import {Bubbles, DoubleBounce, Bars, Pulse} from 'react-native-loader';
 import FastImage from 'react-native-fast-image';
 import ClothModal from './ClothModal';
 
@@ -69,14 +70,15 @@ class ClothDetail extends Component {
     console.log(item.id);
     this.setState({visible: true, item: item});
   }
+  componentWillMount() {
+    this._loadAssetsAsync();
+  }
   render() {
     if (!this.state.appIsReady) {
       return (
-        <AppLoading
-          startAsync={this._loadAssetsAsync}
-          onFinish={() => this.setState({ appIsReady: true })}
-          onError={console.warn}
-        />
+        <View style={{ flex: 1, backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center' }}>
+            <ActivityIndicator size="large" color='rgba(0,0,0,0.6)' />
+        </View>
       );
     }
     const { params } = this.props.navigation.state;

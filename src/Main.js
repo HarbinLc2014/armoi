@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, Platform, Image, LayoutAnimation, TouchableOpacity, Dimensions, ScrollView, Keyboard, FlatList } from 'react-native';
+import { ActivityIndicator, View, Text, Platform, Image, LayoutAnimation, TouchableOpacity, Dimensions, ScrollView, Keyboard, FlatList } from 'react-native';
 import { Button } from 'react-native-elements';
+import {Bubbles, DoubleBounce, Bars, Pulse} from 'react-native-loader';
 import FastImage from 'react-native-fast-image';
 import { Ionicons, Foundation, Entypo } from '@expo/vector-icons';
 import { Header, Item, Icon, Input} from 'native-base';
@@ -172,11 +173,9 @@ rounded>
   render() {
     if (!this.state.appIsReady) {
       return (
-        <AppLoading
-          startAsync={this._loadAssetsAsync}
-          onFinish={() => this.setState({ appIsReady: true })}
-          onError={console.warn}
-        />
+        <View style={{ flex: 1, backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center' }}>
+            <ActivityIndicator size="large" color='rgba(0,0,0,0.6)' />
+        </View>
       );
     }
     return (
