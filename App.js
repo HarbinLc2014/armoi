@@ -8,6 +8,7 @@ import Main from './src/Main';
 import Size from './src/Size';
 import Recommend from './src/Recommend';
 import Setting from './src/Setting';
+import Collection from './src/Collection';
 import Search from './src/SearchPage';
 import Menu from './src/Menu';
 import ClothDetail from './src/component/ClothDetail';
@@ -75,7 +76,7 @@ export default class App extends React.Component {
                     }
                    },
                    Catergorize: { screen: StackNavigator({
-                     catergorize: { screen: Setting }
+                     catergorize: { screen: Collection }
                    }),
                    navigationOptions: {
                      tabBarIcon: ({tintColor}) => (
