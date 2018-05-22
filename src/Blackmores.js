@@ -266,7 +266,7 @@ const blackmores =[
   {
     name: "Natural E 500IU",
     pricelist: {"150粒装":50.99},
-    description: "Blackmores Natural E 500IU is a source of vitamin E which is an antioxidant and free radical scavenger. Vitamin E also reduces oxidation of LDL-cholesterol. ",
+    description: "Blackmores Natural E 500IU is a source of vitamin E which is an antioxidant and free radical scavenger. Vitamin E also helps reduce oxidation of LDL-cholesterol.",
     src: require('../assets/Blackmores/Natural-E-500IU-(150).png')
   },
   {
