@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import { View, Text, Platform, Image, LayoutAnimation, TouchableOpacity, Dimensions, ScrollView, Keyboard, ListView, FlatList } from 'react-native';
+import { connect } from 'react-redux';
 import { Button } from 'react-native-elements';
 import { Ionicons, Foundation, Entypo } from '@expo/vector-icons';
 import { Header, Item, Icon, Input} from 'native-base';
+import SearchList from './component/SearchList.js';
+import ListItem from './component/ListItem.js';
+import * as actions from '../Actions';
 
 const SCREEN_WIDTH= Dimensions.get('window').width;
 const SCREEN_HEIGHT= Dimensions.get('window').height;
 
 class Search extends Component {
-       state = { onSearch: false, isCross: true, isCancel: false, searchContent:'' };
+       state = { onSearch: false, isCross: true, isCancel: false, searchContent:'', data: [{id: 'Swisse'},{id: 'BlackMore'},{id: "Nature's Way"},{id: 'Bioisland'},{id: '学生保健'},{id: '妇女保健'}, {id: '老年保健'}, {id: '男性保健'}] };
   static navigationOptions = (props) => {
 
    const { navigation } = props;
@@ -104,18 +108,41 @@ rounded>
  }
  renderBrandRecommendation() {
    return (
-     <View />
+     <View style={{ flex: 1, flexDirection: 'row' }}>
+      <FlatList ref="flatlist"
+        style={{ backgroundColor: '#d1d1d1', width: SCREEN_WIDTH/3, borderRightWidth:0.75, borderRightColor: '#d1d1d1'  }}
+        renderItem={({ item, index })=>
+             <TouchableOpacity
+              onPress={()=>{
+                this.props.selectLibrary(item.content);
+              }}
+             >
+             <View style={{ height: 100, width: SCREEN_WIDTH/3, justifyContent: 'center', alignItems: 'center', borderBottomWidth: 0.4, borderBottomColor: '#ffffff' }}>
+              <Text>{item.title}</Text>
+             </View>
+             </TouchableOpacity>
+         }
+      data={this.props.libraries}
+      keyExtractor={library => library.id}
+      />
+      <View style={{ width: SCREEN_WIDTH*2/3, height: SCREEN_HEIGHT, alignItems: 'center', justifyContent: 'center' }}>
+        <ListItem content={this.props.selectedLibraryId} />
+      </View>
+     </View>
    );
  }
   render() {
     return (
-      <ScrollView contentContainerStyle={{ flex: 1, alignItems: 'center', zIndex: 0, position: 'absolute', width:SCREEN_WIDTH }}>
+      <ScrollView contentContainerStyle={{ flex: 1, zIndex: 0, position: 'absolute', width:SCREEN_WIDTH }}>
       {this.renderSearchHeader()}
-      <Text>{this.state.onSearch? 'Searching' : 'not Searching'}</Text>
       {this.renderBrandRecommendation()}
       </ScrollView>
     );
   }
 }
 
-export default Search;
+const mapStateToProps = state => {
+  return { libraries: state.libraries, selectedLibraryId: state.selectId };
+};
+
+export default connect(mapStateToProps, actions)(Search);

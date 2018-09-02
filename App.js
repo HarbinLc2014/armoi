@@ -1,7 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { StackNavigator, TabNavigator, DrawerNavigator } from 'react-navigation';
+import { createStackNavigator, createBottomTabNavigator, createDrawerNavigator } from 'react-navigation';
 import { Ionicons, Foundation, Entypo, FontAwesome, MaterialCommunityIcons, MaterialIcons, Feather } from '@expo/vector-icons';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import reducers from './reducers';
 import Login from './src/Login';
 import ShopCart from './src/ShopCart';
 import Main from './src/Main';
@@ -17,14 +20,14 @@ import SideMenu from './src/component/SideMenu';
 
 export default class App extends React.Component {
   render() {
-    const MainNavigator = TabNavigator(
+    const MainNavigator = createBottomTabNavigator(
       {
     //  login: {screen: Login},
       main: {
-                  screen: TabNavigator({
-                    home: { screen: StackNavigator({
+                  screen: createBottomTabNavigator({
+                    home: { screen: createStackNavigator({
                       homepage: {
-                        screen: DrawerNavigator({
+                        screen: createDrawerNavigator({
                           hpage: {screen: Main, navigationOptions:{
                             drawerIcon: ({tintColor}) => (
                               <FontAwesome name="home" size={20} color={tintColor} />
@@ -66,7 +69,7 @@ export default class App extends React.Component {
                       title: 'Home'
                     }
                    },
-                    Search: { screen: StackNavigator({
+                    Search: { screen: createStackNavigator({
                       fittingMain: { screen: Search }
                     }),
                     navigationOptions: {
@@ -76,7 +79,7 @@ export default class App extends React.Component {
                       title: 'Search'
                     }
                    },
-                   Catergorize: { screen: StackNavigator({
+                   Catergorize: { screen: createStackNavigator({
                      catergorize: { screen: ProductList }
                    }),
                    navigationOptions: {
@@ -86,7 +89,7 @@ export default class App extends React.Component {
                      title: 'Collection'
                    }
                   },
-                    Explore: { screen: StackNavigator({
+                    Explore: { screen: createStackNavigator({
                       settingMain: { screen: Setting },
                       size: { screen: Size },
                       recommend: { screen: Recommend }
@@ -110,7 +113,9 @@ export default class App extends React.Component {
        }
   );
     return (
+      <Provider store={createStore(reducers)}>
       <MainNavigator />
+      </Provider>
     );
   }
 }

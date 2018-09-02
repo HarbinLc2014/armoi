@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, FlatList, Image, Dimensions, ActivityIndicator, TouchableOpacity, Button } from 'react-native';
 import { AppLoading, Asset, Font, Expo } from 'expo';
-import FastImage from 'react-native-fast-image';
 import blackmores from './Blackmores.js';
 import swisse from './Info.js';
 
@@ -162,7 +161,7 @@ class ProductList extends Component {
        renderItem={({ item, index })=>
             <TouchableOpacity style={{ marginTop: 35, marginBottom: 35 }}>
             <View style={{ marginTop: index>1?20:0, marginLeft:  index%2===1 ? 10:0 , marginRight:  index % 2 === 0 ? 10:0, justifyContent: 'center', alignItems: 'center', width: SCREEN_WIDTH/2-10, borderRadius: 10, height: SCREEN_WIDTH/2+40, backgroundColor: 'rgba(0,0,0,0)' }}>
-            <FastImage source={item.src} resizeMode='contain' style={{ width: SCREEN_WIDTH/2-40, height: SCREEN_WIDTH/2+40, marginTop: 40 }}/>
+            <Image source={item.src} resizeMode='contain' style={{ width: SCREEN_WIDTH/2-40, height: SCREEN_WIDTH/2+40, marginTop: 40 }}/>
             <Text style={{ marginTop: 10, fontSize: 15, fontWeight: 'bold', textAlign: 'center' }}>{item.name}</Text>
             </View>
             </TouchableOpacity>

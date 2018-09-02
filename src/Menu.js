@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 import { View, Text } from 'react-native';
-import { DrawerNavigator } from 'react-navigation';
+import { createDrawerNavigator } from 'react-navigation';
 import { Button } from 'react-native-elements';
 import { Ionicons, Foundation, Entypo } from '@expo/vector-icons';
 import Main from './Main';
@@ -37,7 +37,7 @@ class AnotherScreen extends Component {
   }
 }
 
-const Drawer = DrawerNavigator(
+const Drawer = createDrawerNavigator(
     {
         Home:{
             screen:MyHomeScreen,

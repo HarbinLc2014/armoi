@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { ActivityIndicator, View, Text, Platform, Image, LayoutAnimation, TouchableOpacity, Dimensions, ScrollView, Keyboard, FlatList } from 'react-native';
 import { Button } from 'react-native-elements';
 import {Bubbles, DoubleBounce, Bars, Pulse} from 'react-native-loader';
-import FastImage from 'react-native-fast-image';
 import { Ionicons, Foundation, Entypo } from '@expo/vector-icons';
 import { Header, Item, Icon, Input} from 'native-base';
 import { AppLoading, Asset, Font, Expo } from 'expo';
@@ -46,8 +45,8 @@ const images = [
     }
 
 class Main extends Component {
-       state = { appIsReady: false, list: Brands, list2: [{id:1, desc:'身体保养', src: require('../assets/Logos/health.jpg')},{id:2, desc: '内脏调理', src: require('../assets/Logos/heart.jpg')},{id:3, desc: '免疫增强', src: require('../assets/Logos/免疫力.jpg')},{id:4, desc: '微量元素', src: require('../assets/Logos/center.jpeg')},
-       {id:5, desc: '女性专栏', src: require('../assets/Logos/women.png')},{id:6, desc: '澳洲食品', src: require('../assets/Logos/snack.jpg')}], isEnd: false, onSearch: false, isCross: true, isCancel: false, searchContent:'', refreshing: false, loading: true, loadText: ''};
+       state = { appIsReady: false, list: Brands, list2: [{id:'1', desc:'身体保养', src: require('../assets/Logos/health.jpg')},{id:'2', desc: '内脏调理', src: require('../assets/Logos/heart.jpg')},{id:'3', desc: '免疫增强', src: require('../assets/Logos/免疫力.jpg')},{id:'4', desc: '微量元素', src: require('../assets/Logos/center.jpeg')},
+       {id:'5', desc: '女性专栏', src: require('../assets/Logos/women.png')},{id:'6', desc: '澳洲食品', src: require('../assets/Logos/snack.jpg')}], isEnd: false, onSearch: false, isCross: true, isCancel: false, searchContent:'', refreshing: false, loading: true, loadText: ''};
 
        async _loadAssetsAsync() {
          const imageAssets = cacheImages(images);
@@ -181,7 +180,7 @@ class Main extends Component {
                           })
             }>
             <View style={{ marginTop: index>1?20:0, marginLeft:  index%2===1 ? 10:0 , marginRight:  index % 2 === 0 ? 10:0, justifyContent: 'center', alignItems: 'center', width: SCREEN_WIDTH/2-10, borderRadius: 10, height: SCREEN_WIDTH/2-10, backgroundColor: 'rgba(0,0,0,0)' }}>
-            <FastImage source={item.src} resizeMode='contain' style={{ width: SCREEN_WIDTH/2-40, height: SCREEN_WIDTH/2-40 }}/>
+            <Image source={item.src} resizeMode='contain' style={{ width: SCREEN_WIDTH/2-40, height: SCREEN_WIDTH/2-40 }}/>
             <Text style={{ marginTop: 10, fontSize: 15, fontWeight: 'bold' }}>{item.code}</Text>
             </View>
             </TouchableOpacity>
@@ -204,7 +203,7 @@ class Main extends Component {
         renderItem={({ item, index })=>
              <TouchableOpacity>
              <View style={{ marginTop: 10, marginBottom: 20, marginLeft: index===0 ? 20:0, marginRight: 20, justifyContent: 'center', alignItems: 'center', width: SCREEN_WIDTH/4+80, borderRadius: 10, height: SCREEN_WIDTH/4, backgroundColor: 'rgba(0,0,0,0)' }}>
-              <FastImage source={item.src} resizeMode='contain' style={{ width: SCREEN_WIDTH/4+80, height: SCREEN_WIDTH/4 }}/>
+              <Image source={item.src} resizeMode='contain' style={{ width: SCREEN_WIDTH/4+80, height: SCREEN_WIDTH/4 }}/>
               <Text style={{ fontSize: 13, textAlign: 'center', fontWeight: 'bold', marginTop: 12, marginBottom: 15 }}>{item.desc}</Text>
              </View>
              </TouchableOpacity>
