@@ -3,6 +3,6 @@ export default (state, action) => {
     case 'select_library':
       return action.payload;
     default:
-      return "aaa";
+      return [];
   }
 };

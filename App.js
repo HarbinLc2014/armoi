@@ -15,6 +15,7 @@ import Setting from './src/Setting';
 import Product from './src/Product';
 import Search from './src/SearchPage';
 import Menu from './src/Menu';
+import ListItem from './src/component/ListItem';
 import ClothDetail from './src/component/ClothDetail';
 import SideMenu from './src/component/SideMenu';
 
@@ -70,7 +71,9 @@ export default class App extends React.Component {
                     }
                    },
                     Search: { screen: createStackNavigator({
-                      fittingMain: { screen: Search }
+                      fittingMain: { screen: Search },
+                      product: { screen: Product },
+                      ListItem: {screen: ListItem}
                     }),
                     navigationOptions: {
                       tabBarIcon: ({tintColor}) => (
@@ -80,7 +83,8 @@ export default class App extends React.Component {
                     }
                    },
                    Catergorize: { screen: createStackNavigator({
-                     catergorize: { screen: ProductList }
+                     catergorize: { screen: ProductList },
+                     product: { screen: Product }
                    }),
                    navigationOptions: {
                      tabBarIcon: ({tintColor}) => (

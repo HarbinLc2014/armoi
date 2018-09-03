@@ -108,7 +108,7 @@ rounded>
  }
  renderBrandRecommendation() {
    return (
-     <View style={{ flex: 1, flexDirection: 'row' }}>
+     <View style={{ flex: 1, flexDirection: 'row', height: SCREEN_HEIGHT }}>
       <FlatList ref="flatlist"
         style={{ backgroundColor: '#d1d1d1', width: SCREEN_WIDTH/3, borderRightWidth:0.75, borderRightColor: '#d1d1d1'  }}
         renderItem={({ item, index })=>
@@ -126,7 +126,7 @@ rounded>
       keyExtractor={library => library.id}
       />
       <View style={{ width: SCREEN_WIDTH*2/3, height: SCREEN_HEIGHT, alignItems: 'center', justifyContent: 'center' }}>
-        <ListItem content={this.props.selectedLibraryId} />
+        <ListItem content={this.props.selectedLibraryId} navigation={this.props.navigation}/>
       </View>
      </View>
    );

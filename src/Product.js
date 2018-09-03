@@ -36,6 +36,7 @@ class Product extends Component {
   componentWillMount(){
    this._loadAssetsAsync();
     console.log(product);
+    this.setState({size: Object.keys(this.props.navigation.state.params.pricelist)[0]});
   }
   render() {
     const { size, appIsReady, amount } = this.state;
@@ -46,19 +47,27 @@ class Product extends Component {
         </View>
       );
     }
+    var arr1 = [];
+    for(var key in this.props.navigation.state.params.pricelist) {
+      arr1.push(key);
+    }
     return (
       <ScrollView contentContainerStyle={{ justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff' }}>
-      <Image source={product[0].src} style={{ width: 300, height: 400 }} />
-      <Text style={{ fontSize: 20, color: '#000', textAlign: 'center', fontWeight: 'bold', margin: 15 }}>{product[0].name}</Text>
+      <Image source={this.props.navigation.state.params.src} style={{ width: 240, height: 320, marginTop:40, marginBottom:20 }} />
+      <Text style={{ fontSize: 20, color: '#000', textAlign: 'center', fontWeight: 'bold', margin: 15 }}>{this.props.navigation.state.params.name}</Text>
       <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: 100 }}>
         <PickerIOS
         selectedValue={this.state.size}
         style={{ height: 60, width: 100 }}
         itemStyle={{ fontSize: 20, color: '#000', textAlign: 'center', fontWeight: 'bold', width: 100, height: 60 }}
         onValueChange={(itemValue, itemIndex) => this.setState({size: itemValue})}>
-          <PickerIOS.Item label="30粒装" value="30粒装" />
-          <PickerIOS.Item label="60粒装" value="60粒装" />
-          <PickerIOS.Item label="120粒装" value="120粒装" />
+          {arr1.map((size) => (
+            <PickerIOS.Item
+              key={size}
+              value={size}
+              label={size}
+            />
+          ))}
         </PickerIOS>
         <PickerIOS
         selectedValue={this.state.amount}
@@ -73,8 +82,8 @@ class Product extends Component {
         </PickerIOS>
 
       </View>
-      <Text style={{ fontSize: 20, color: '#000', textAlign: 'center', fontWeight: 'bold', marginBottom: 30 }}>${product[0].pricelist[this.state.size]} * {this.state.amount}  =  ${product[0].pricelist[this.state.size]*this.state.amount}</Text>
-      <Text style={{ fontSize: 15, color: '#000', textAlign: 'center', marginBottom: 30 }}>{product[0].description}</Text>
+      <Text style={{ fontSize: 20, color: '#000', textAlign: 'center', fontWeight: 'bold', marginBottom: 30 }}>${this.props.navigation.state.params.pricelist[this.state.size]} * {this.state.amount}  =  ${this.props.navigation.state.params.pricelist[this.state.size]*this.state.amount}</Text>
+      <Text style={{ fontSize: 15, color: '#000', textAlign: 'center', marginBottom: 30 }}>{this.props.navigation.state.params.description}</Text>
       <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row', width: SCREEN_WIDTH, marginBottom: 25 }}>
       <Button title='加入购物车'/><View style={{ width: 100}} /><Button title='马上购买'/>
       </View>
